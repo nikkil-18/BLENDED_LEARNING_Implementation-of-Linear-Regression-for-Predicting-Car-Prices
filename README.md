@@ -81,10 +81,8 @@ RegisterNumber: 212225040280
 
 <img width="1211" height="741" alt="Screenshot 2026-02-12 094612" src="https://github.com/user-attachments/assets/483a9aa4-e4b5-49ab-85f5-a1e0588c1195" />
 
-<img width="1903" height="1010" alt="Screenshot 2026-02-12 091755" src="https://github.com/user-attachments/assets/95431440-570a-4f46-8f99-cab4544c23d1" />
-
+<img width="798" height="687" alt="op" src="https://github.com/user-attachments/assets/228c7c6f-8378-4921-b19c-5b92da259f00" />
 
 
 ## Result:
-Thus, the program to implement a linear regression model for predicting car prices is written and verified using Python programming, along with the testing of key assumptions for linear regression.
 Thus, the program to implement a linear regression model for predicting car prices is written and verified using Python programming, along with the testing of key assumptions for linear regression.
