@@ -79,6 +79,7 @@ RegisterNumber: 212225040280
 
 ## Output:
 
+<img width="898" height="586" alt="op graph" src="https://github.com/user-attachments/assets/e50f104b-e497-43ed-9243-0e9d07fcac63" />
 
 <img width="798" height="687" alt="op" src="https://github.com/user-attachments/assets/228c7c6f-8378-4921-b19c-5b92da259f00" />
 
