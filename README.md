@@ -75,8 +75,7 @@ plt.show()
  Program to implement linear regression model for predicting car prices and test assumptions.
 Developed by: nikkilvarshan 
 RegisterNumber: 212225040280 
-*/
-```
+
 
 ## Output:
 
