@@ -1,88 +1,100 @@
-# BLENDED_LEARNING
-# Implementation-of-Linear-Regression-for-Predicting-Car-Prices
-## AIM:
+BLENDED_LEARNING
+Implementation-of-Linear-Regression-for-Predicting-Car-Prices
+AIM:
 To write a program to predict car prices using a linear regression model and test the assumptions for linear regression.
 
-## Equipments Required:
-1. Hardware – PCs
-2. Anaconda – Python 3.7 Installation / Jupyter notebook
+EQUIPMENTS REQUIRED:
+Hardware – PCs
+Anaconda – Python 3.7 Installation / Jupyter notebook
+ALGORITHM
+Import Libraries: Bring in essential libraries such as pandas, numpy, matplotlib, and sklearn.
+Load Dataset: Import the dataset containing car prices along with relevant features.
+Data Preprocessing: Manage missing data and select key features for the model, if required.
+Split Data: Divide the dataset into training and testing subsets.
+Train Model: Build a linear regression model and train it using the training data.
+Make Predictions: Apply the model to predict outcomes for the test set.
+Evaluate Model: Measure the model's performance using metrics like R² score, Mean Absolute Error (MAE), etc.
+Check Assumptions: Plot residuals to verify assumptions like homoscedasticity, normality, and linearity.
+Output Results: Present the predictions and evaluation metrics.
+PROGRAM:
+/*
+ Program to implement linear regression model for predicting car prices and test assumptions.
+Developed by: R K NIKKIL VARSHAN
+RegisterNumber:  212225040280
 
-## Algorithm
-1. Import Libraries: Import necessary libraries such as pandas, numpy, matplotlib, and sklearn.
-2. Load Dataset: Load the dataset containing car prices and relevant features.
-3. Data Preprocessing: Handle missing values and perform feature selection if necessary.
-4. Split Data: Split the dataset into training and testing sets.
-5. Train Model: Create a linear regression model and fit it to the training data.
-6. Make Predictions: Use the model to make predictions on the test set.
-7. Evaluate Model: Assess model performance using metrics like R² score, Mean Absolute Error (MAE), etc.
-8. Check Assumptions: Plot residuals to check for homoscedasticity, normality, and linearity.
-9. Output Results: Display the predictions and evaluation metrics.
-   
-   
-   
-
-## Program:
-~~~
-#Program to implement linear regression model for predicting car prices and test assumptions.
-#Developed by: R K NIKKIL VARSHAN 
-#RegisterNumber: 212225040280
-
-# Import necessary libraries
 import pandas as pd
-import matplotlib.pyplot as plt
+import numpy as np 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import StandardScaler
+import seaborn as sns
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+df=pd.read_csv('CarPrice_Assignment.csv')
+x=df[['enginesize','horsepower','citympg','highwaympg']]
+y=df['price']
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+scaler=StandardScaler()
+x_train_scaled=scaler.fit_transform(x_train)
+x_test_scaled=scaler.transform(x_test)
+model=LinearRegression()
+model.fit(x_train_scaled,y_train)
+y_pred=model.predict(x_test_scaled)
+print("="*50)
+print("MODEL COEFFICIENTS:")
+for feature, coef in zip(x.columns, model.coef_):
+    print(f"{feature:>12}: {coef:>10.2f}")
+print(f"{'Intercept':>12}:{model.intercept_:>10.2f}")
+print("="*50)
 
-# Load the dataset from the URL
-data = pd.read_csv("https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-ML240EN-SkillsNetwork/labs/data/CarPrice_Assignment.csv")
+print("\nMODEL PERFORMANCE:")
+mse=mean_squared_error(y_test, y_pred)
+print('Mean squared error=',mse)
+rmse=np.sqrt(mse)
+print('Root mean squared error=',rmse)
+r2score=r2_score(y_test, y_pred)
+print('R-squared=',r2score)
 
-# Display the first few rows of the dataset
-print(data.head())
-
-# Data Preprocessing
-# Handle missing values (if any)
-data = data.dropna()  # Drop rows with missing values
-
-# Select features and target variable
-# Assume 'price' is the target variable and 'horsepower', 'curbweight', 'enginesize', and 'highwaympg' are features
-X = data[['horsepower', 'curbweight', 'enginesize', 'highwaympg']]
-y = data['price']
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Train the linear regression model
-model = LinearRegression()
-model.fit(X_train, y_train)
-
-# Make predictions
-y_pred = model.predict(X_test)
-
-# Evaluate the model
-print("Mean Absolute Error:", mean_absolute_error(y_test, y_pred))
-print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
-print("R² Score:", r2_score(y_test, y_pred))
-
-# Check model assumptions
-plt.scatter(y_pred, y_test - y_pred)
-plt.xlabel('Predicted Prices')
-plt.ylabel('Residuals')
-plt.title('Residuals vs Predicted Prices')
-plt.axhline(0, color='red', linestyle='--')
+# 1. Linearity check
+plt.figure(figsize=(10,5))
+plt.scatter(y_test, y_pred, alpha=0.6)
+plt.plot([y.min(),y.max()],[y.min(),y.max()],'r--')
+plt.title("Linearity check: Actual vs Predicted prices")
+plt.xlabel("Actual Price($)")
+plt.ylabel("Predicted Price($)")
+plt.grid(True)
 plt.show()
-~~~
- Program to implement linear regression model for predicting car prices and test assumptions.
-Developed by: nikkilvarshan 
-RegisterNumber: 212225040280 
 
+# 2. Independence (Durbin-Watson)
+residuals=y_test-y_pred
+dw_test=sm.stats.durbin_watson(residuals)
+print(f"\nDurbin-Watson Statistic:{dw_test:.2f}","\n(Values close to 2 indicate no autocorrelation)")
 
-## Output:
+# 3. Homoscedasticity
+plt.figure(figsize=(10,5))
+sns.residplot(x=y_pred, y=residuals, lowess=True, line_kws={'color':'red'})
+plt.title("Homoscedasticity Check: Residuals vs Predicted")
+plt.xlabel("Predicted Price ($)")
+plt.ylabel("Residuals ($)")
+plt.grid(True)
+plt.show()
 
-<img width="898" height="586" alt="op graph" src="https://github.com/user-attachments/assets/e50f104b-e497-43ed-9243-0e9d07fcac63" />
+# 4. Normality of residuals
+fig, (ax1,ax2)=plt.subplots(1,2,figsize=(12,5))
+sns.histplot(residuals, kde=True, ax=ax1)
+ax1.set_title("Residuals Distribution")
+sm.qqplot(residuals, line='45', fit=True, ax=ax2)
+ax2.set_title("Q-Q Plot")
+plt.tight_layout()
+plt.show()
 
-<img width="798" height="687" alt="op" src="https://github.com/user-attachments/assets/228c7c6f-8378-4921-b19c-5b92da259f00" />
+*/
+OUTPUT:
+Screenshot 2025-05-08 045336
 
+Screenshot 2025-05-08 045350
 
-## Result:
+Result:
 Thus, the program to implement a linear regression model for predicting car prices is written and verified using Python programming, along with the testing of key assumptions for linear regression.
+
