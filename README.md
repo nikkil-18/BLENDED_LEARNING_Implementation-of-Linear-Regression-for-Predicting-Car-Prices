@@ -1,22 +1,28 @@
-BLENDED_LEARNING
-Implementation-of-Linear-Regression-for-Predicting-Car-Prices
-AIM:
+# BLENDED_LEARNING
+# Implementation-of-Linear-Regression-for-Predicting-Car-Prices
+
+## AIM:
 To write a program to predict car prices using a linear regression model and test the assumptions for linear regression.
 
-EQUIPMENTS REQUIRED:
-Hardware – PCs
-Anaconda – Python 3.7 Installation / Jupyter notebook
-ALGORITHM
-Import Libraries: Bring in essential libraries such as pandas, numpy, matplotlib, and sklearn.
-Load Dataset: Import the dataset containing car prices along with relevant features.
-Data Preprocessing: Manage missing data and select key features for the model, if required.
-Split Data: Divide the dataset into training and testing subsets.
-Train Model: Build a linear regression model and train it using the training data.
-Make Predictions: Apply the model to predict outcomes for the test set.
-Evaluate Model: Measure the model's performance using metrics like R² score, Mean Absolute Error (MAE), etc.
-Check Assumptions: Plot residuals to verify assumptions like homoscedasticity, normality, and linearity.
-Output Results: Present the predictions and evaluation metrics.
-PROGRAM:
+## EQUIPMENTS REQUIRED:
+1. Hardware – PCs
+2. Anaconda – Python 3.7 Installation / Jupyter notebook
+
+## ALGORITHM
+
+1. Import Libraries: Bring in essential libraries such as pandas, numpy, matplotlib, and sklearn.
+2. Load Dataset: Import the dataset containing car prices along with relevant features.
+3. Data Preprocessing: Manage missing data and select key features for the model, if required.
+4. Split Data: Divide the dataset into training and testing subsets.
+5. Train Model: Build a linear regression model and train it using the training data.
+6. Make Predictions: Apply the model to predict outcomes for the test set.
+7. Evaluate Model: Measure the model's performance using metrics like R² score, Mean Absolute Error (MAE), etc.
+8. Check Assumptions: Plot residuals to verify assumptions like homoscedasticity, normality, and linearity.
+9. Output Results: Present the predictions and evaluation metrics.
+    
+
+## PROGRAM:
+```
 /*
  Program to implement linear regression model for predicting car prices and test assumptions.
 Developed by: R K NIKKIL VARSHAN
@@ -90,11 +96,17 @@ plt.tight_layout()
 plt.show()
 
 */
-OUTPUT:
-Screenshot 2025-05-08 045336
+```
 
-Screenshot 2025-05-08 045350
+## OUTPUT:
 
-Result:
+
+![Screenshot 2025-05-08 045336](https://github.com/user-attachments/assets/435f7c98-596c-4668-915a-889f4abe7e43)
+
+
+![Screenshot 2025-05-08 045350](https://github.com/user-attachments/assets/7454cd15-8c21-476e-95db-bdc802145823)
+
+
+
+## Result:
 Thus, the program to implement a linear regression model for predicting car prices is written and verified using Python programming, along with the testing of key assumptions for linear regression.
-
